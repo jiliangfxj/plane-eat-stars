@@ -1,0 +1,214 @@
+		*{
+			margin:0;
+			padding:0;
+		}
+		
+		#sub{
+
+		}
+		.main{
+			background-color:#8cb2df;
+			width: 100%;
+			height: 100%;
+			position: fixed;
+		}
+		.sum_yun{
+			width:100%;
+			height:150px;
+			position: absolute;
+			overflow: hidden;
+			bottom:0;
+			opacity:0.2;
+
+		}
+		.yun_inside{
+			position:relative;
+			width:200%;
+			height:100%;
+			animation:move 5s linear infinite;
+		}
+		.yun{
+			position:absolute;
+			width:100%;
+			height:250px;
+			
+			bottom:0px;
+			background-image:url('../images/yun.jpg');
+			background-size:300px 300px;
+			background-repeat:repeat;
+			
+
+		}
+
+		@keyframes move{
+			from{
+				left:0px;
+
+			}
+			to{
+				left:-100%;
+			}
+		}
+		.setting span{
+			margin-left:20px;
+			border-radius:50%;
+			background-color:orange;
+			text-align: center;
+			height:30px;
+			line-height:30px;
+			padding:8px;
+			cursor:pointer;
+		}
+		.setting span:hover{
+			background-color:#000;
+			color:#fff;
+		}
+		.feiji{
+			background-image:url("../images/feiji.gif");
+			width:100px;
+			height:50px;
+			position:absolute;
+			left:100px;
+			top:150px;
+			background-size:contain;
+			/*background-color:pink;*/
+			background-repeat:no-repeat;
+		}
+		.bird{
+			width:150px;
+			height:150px;
+			position:absolute;
+			
+			background-size:contain;
+			background-repeat: no-repeat;
+			transform:rotateY(180deg);
+			right:10px;
+
+		}
+		.red_bird{
+			background-image:url("../images/Bird-B.gif");
+			right:10px;
+			top:60px;
+			width:150px;
+			height:150px;
+			position:absolute;
+			
+			background-size:contain;
+			background-repeat: no-repeat;
+			transform:rotateY(180deg);
+		}
+		.blue_bird{
+			background-image:url("../images/blue.gif");
+			right:10px;
+			top:130px;
+
+			width:150px;
+			height:150px;
+			position:absolute;
+			
+			background-size:contain;
+			background-repeat: no-repeat;
+			transform:rotateY(180deg);
+		}
+		.yellow_bird{
+			background-image:url("../images/Bird-A.gif");
+			right:10px;
+			top:210px;
+
+			width:150px;
+			height:150px;
+			position:absolute;
+			
+			background-size:contain;
+			background-repeat: no-repeat;
+			transform:rotateY(180deg);
+		}
+
+		
+		.show_xingxing{
+			display:inline-block;
+			position: absolute;
+			left:0;
+			top:0;
+			padding:15px;
+			background-color: green;
+			color:white;
+			font-weight: bolder;
+			font-size:22px;
+		}
+		.show_time{
+			display:inline-block;
+			position: absolute;
+			left: 0;
+			top:0;
+			padding-right:15px;
+			margin-left:95px;
+			background-color: green;
+			color: red;
+			font-size: 22px;
+			font-weight: bolder;
+			text-align: center;
+			line-height: 30px;
+			height: 30px;
+		}
+		
+		/*show_star开始*/
+
+		.show_star{
+			display:inline-block;
+			position:absolute;
+			left:200px;
+			top:200px;
+			background-image:url('../images/star.gif');
+			width:40px;
+			height: 38px;
+		}
+		/*show_star结束*/
+
+
+		/*form开始*/
+		.result{
+			width:100%;
+			height:100%;
+			background-color: green;
+			position: absolute;
+			margin: 0 auto;
+			text-align: center;
+			
+		}
+		.result p:nth-child(1){
+			background-image:url("../images/sky2.png");
+			width:175px;
+			height:314px;
+			position:absolute;
+			background-position: -175px 0;
+			left:50%;
+			transform:translateX(-50%);
+			top:5%;
+
+		}
+		.result p:nth-child(2){
+			margin-top:30%;
+		}
+		.result p:nth-child(2) input{
+			width:80%;
+			height:50px;
+			line-height:50px;
+			text-align: center;
+		}
+		.result p:nth-child(3){
+			
+		}
+		.result p:nth-child(3) span{
+			border-radius:31%;
+			width:79%;
+			height:48;
+			line-height:50px;
+			text-align: center;
+			margin-left:10%;
+		}
+		
+
+		.end ul li{
+			padding:15px;
+		}

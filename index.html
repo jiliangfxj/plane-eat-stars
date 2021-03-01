@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="./style/index.css">
+	<script type="text/javascript" src="jQuery/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+	<div style="width:100%;height:100%;">
+		<div class="result" style="height:100%;position:absolute;top:0;">
+			<p class="logo"></p>
+			<p><input id="username" type="text" name="" placeholder="please write yours name"></p>
+			<p><span id="sub" style="display:block;background-color:pink;cursor:pointer;">continue</span>
+		</div>
+		<div class="main" style="display:none;position:absolute;top:0;">
+			
+
+			<div class="setting" style="position:absolute;right:20px;">
+
+				<span id="set1">||</span>
+				<span id="set2">音乐</span>
+				<span id="set3">A+</span>
+				<span id="set4">A-</span>
+				<audio  src="sound/background.mp3" hidden loop autoplay="autoplay" controls="controls"></audio>
+
+			</div>
+			<div class="feiji">
+				feiji
+			</div>
+
+			<!-- 星星开始 -->
+			<div class="show_star" style="display:none;">
+				star
+			</div>
+			<!-- 星星结束 -->
+
+			<div class="red_bird" style="display:none;">
+				red
+			</div>
+			<div class="blue_bird" style="display:none;">
+				blue
+			</div>
+			<div class="yellow_bird" style="display:none;">
+				yellow
+			</div>
+			<div class="bird">
+				bird
+			</div>
+
+			
+			<div class="show_xingxing">
+				0+'分'
+			</div>
+			<div class="show_time">
+				time
+			</div>
+			<div class="sum_yun">
+				<div class="yun_inside">
+					<div class="yun" >
+				
+					</div>
+					<div class="yun" >
+				
+					</div>
+
+				</div>
+			</div>
+
+			
+		</div>
+
+		<div class="end" style="margin-top:5%;">
+			<ul style="float:left;list-style: none;margin-left:15%;">
+				<li>position</li>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+				<li>6</li>
+			</ul>
+			<ul style="float:left;list-style: none;margin-left:15%;">
+				<li>Name</li>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+				<li>6</li>
+			</ul>
+			<ul style="float:left;list-style: none;margin-left:15%;">
+				<li>star</li>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+				<li>6</li>
+			</ul>
+			<ul style="float:left;list-style: none;margin-left:15%;">
+				<li>time</li>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+				<li>6</li>
+			</ul>
+
+			<form style="">
+				<input id="start_game" style="display:block;width:70%;height:35px;line-height:35px;background-color:orange;margin:0 auto;text-align:center;border:none;" type="submit" name="" value="Start Game">
+			</form>
+
+		</div>
+
+
+	</div>
+
+	<script type="text/javascript">
+		var sub = document.getElementById("sub");
+		var user = document.getElementById("username");
+		var sub_result = document.getElementsByClassName("result")[0];
+		var setting = document.getElementsByClassName("setting")[0];
+		var set1 = document.getElementById("set1");
+		var set2 = document.getElementById("set2");
+		var set3 = document.getElementById("set3");
+		var set4 = document.getElementById("set4");
+		var audio = document.getElementsByTagName("audio")[0];
+		var feiji = document.getElementsByClassName("feiji")[0];
+		var main = document.getElementsByClassName("main")[0];
+		var bird1 = document.getElementsByClassName("bird");
+		var feiji1 = document.getElementsByClassName("feiji")[0];
+
+		//获取结束
+		var end = document.getElementsByClassName("end")[0];
+		//获取开始游戏按钮
+		var start_game = document.getElementById("start_game");
+
+		//获取星星
+		var show_xingxing = document.getElementsByClassName("show_xingxing")[0];
+		//获取时间
+		var show_time = document.getElementsByClassName("show_time")[0];
+
+		//获取展示的星星
+		var show_star = document.getElementsByClassName("show_star")[0];
+		var star1 = document.getElementsByClassName("show_star");
+
+
+		var move_top = 150;
+		var move_left = 100;
+
+
+		//获取bird
+		var red_bird = document.getElementsByClassName("red_bird")[0];
+		var blue_bird = document.getElementsByClassName("blue_bird")[0];
+		var yellow_bird = document.getElementsByClassName("yellow_bird")[0];
+		
+
+		//记录星星的得分
+		var sum_star = 0;
+
+
+
+		//获取小鸟的值
+		var bird_obj = {};
+		function get_bird_value(bird){
+			if(bird){
+				var bird_top = bird.offsetTop;
+				var bird_left = bird.offsetLeft;
+				var bird_bottom = bird.offsetTop + bird.offsetHeight;
+				var bird_right = bird.offsetLeft + bird.offsetWidth;
+
+				return bird_obj = {'top':bird_top,'left':bird_left,'bottom':bird_bottom,'right':bird_right}
+			}else{
+				return null;
+			}
+			
+		}
+
+		//获取星星的位置
+		var star_obj = {};
+		function get_star_value(star){
+
+			if(star){
+				var star_top = star.offsetTop;
+
+				var star_left = star.offsetLeft;
+				var star_right = star.offsetLeft+star.offsetWidth;
+				var star_bottom = star.offsetTop+star.offsetHeight;
+
+				
+
+				return star_obj = {'top':star_top,'left':star_left,'right':star_right,'bottom':star_bottom};
+			}else{
+				return null;
+			}
+		}
+
+
+
+		
+
+		//获取飞机的值
+		var feiji_obj={};
+		function get_feiji_value(){
+			var feiji_top = feiji.offsetTop;
+			var feiji_left = feiji.offsetLeft;
+			var feiji_bottom = feiji.offsetTop + feiji.offsetHeight;
+			var feiji_right = feiji.offsetLeft + feiji.offsetWidth;
+
+			 feiji_obj = {'top':feiji_top,'left':feiji_left,'bottom':feiji_bottom,'right':feiji_right};
+
+			 return feiji_obj;
+		}
+
+
+		
+
+		//window的height
+		var window_height = $(window).height();
+		
+		//window的width
+		var window_width = $(window).width();
+
+
+
+
+		//成绩的对象
+		var result = [
+			{"name":"player 1","time":"20","starts":"10"},
+			{"name":"player 2","time":"20","starts":"8"}
+		];
+
+		var local_name = result[0]['name'];
+		var local_time = result[0]['time'];
+		var local_starts = result[0]['starts']
+		
+
+
+
+		localStorage.setItem("name",local_name);
+		localStorage.setItem("time",local_time);
+		localStorage.setItem("starts",local_starts);
+		
+		
+
+
+
+
+		//设置倒计时
+		var shijian = 60;
+		var show_timer = setInterval(function(){
+			shijian--;
+			show_time.innerHTML = shijian;
+			if(shijian<=0){
+				clearInterval(show_timer);
+				alert("时间到,游戏结束");
+				
+				console.log(result);
+				main.style.display = 'none';
+				end.style.display = 'block';
+
+			}
+
+		},1000);
+
+
+
+		//键盘控制飞机
+		document.onkeydown = function(e){
+			var e = e||window.event;
+			var key = e.keyCode;
+			// console.log(key);
+			// 38 40 37 39
+			
+			
+			if(key==38){
+				//上
+				if(feiji.offsetTop<=0){
+
+				}else{
+					move_top -=20;
+					feiji.style.top = move_top+'px';
+				}
+			}else if(key==40){
+				//下
+				
+				if(feiji.offsetTop>=window_height-50-150){
+
+				}else{
+					move_top += 20;
+					feiji.style.top = move_top+'px';
+				}
+			}else if(key==37){
+				//左
+				if(feiji.offsetLeft<=0){
+
+				}else{
+					move_left -=20;
+					feiji.style.left = move_left+'px';
+				}
+			}else if(key==39){
+				//右
+				if(feiji.offsetLeft>=window_width-100){
+
+				}else{
+					move_left +=20;
+					feiji.style.left = move_left+'px';
+				}
+			}
+
+		
+			
+			if(a1){
+				var a1_value = get_star_value(a1);
+				
+				var bol1 = check(a1_value);
+				if(bol1){
+					sum_star+=100;
+					main.removeChild(a1);
+					a1 = createStar();
+				}
+				
+			}
+			if(a2){
+				var a2_value = get_star_value(a2);
+				
+				var bol2 = check(a2_value);
+				if(bol2){
+					sum_star+=100;
+					main.removeChild(a2);
+					a2 = createStar();
+				}
+			}
+			if(a3){
+				var a3_value = get_star_value(a3);
+				
+				var bol3 = check(a3_value);
+				if(bol3){
+					sum_star+=100;
+					main.removeChild(a3);
+					a3 = createStar();
+				}
+			}
+
+
+			console.log(sum_star);
+
+			show_xingxing.innerHTML = sum_star+'分';
+		}
+
+
+
+
+
+		function check(x){
+			var a_feiji = get_feiji_value();
+			if(a_feiji['top']>x['bottom']||a_feiji['left']>x['right']||a_feiji['right']<x['left']||a_feiji['bottom']<x['top']){
+				
+			
+			}else{
+			
+				return true;
+			}
+			
+		}
+
+		
+
+		//创建3个星星
+		var a1 = createStar();
+		var a2 = createStar();
+		var a3 = createStar();
+
+		
+
+		
+		//让鸟出现在随机位置，并且开始飞行
+		var time1 = setInterval(function(){
+
+			move();
+
+			
+
+		},1000);
+
+
+		
+
+		//让鸟移动
+		
+		function move(){
+
+			if(bird1.length<=3){
+
+				var steep = 20;
+				var bird = createBird();
+				
+				
+				var bird_move = setInterval(function(){
+				steep +=20;
+				bird.style.right = steep+'px';
+
+				bird.setAttribute("right",steep);
+				
+
+				if(bird.getAttribute("right")>=window_width){
+					main.removeChild(bird);
+					clearInterval(bird_move);
+					// steep = 20;
+				}
+				
+				//这个地方是重点！！！
+				var get_feiji = get_feiji_value();
+				//一定要搞清楚这里的bird和bird1的区别
+				var bird_value = get_bird_value(bird);
+
+				
+				
+				//碰撞检测
+				if(get_feiji['top']>bird_value['bottom']-50||get_feiji['left']>bird_value['right']-50||get_feiji['right']<bird_value['left']+50||get_feiji['bottom']<bird_value['top']+50){
+					
+				
+				}else{
+					
+					bird.style.display = 'none';
+					main.removeChild(bird);
+					clearInterval(bird_move);
+					
+
+				}
+
+
+			},100);
+
+			
+			}
+		}
+
+
+		
+
+		//随机创建不同位置的鸟
+		function createBird(){
+
+			var div = document.createElement("div");
+			div.className = "bird";
+
+			div.style.backgroundImage = 'url("images/blue.gif")';
+			div.style.right = '10px';
+			
+			div.style.top = Math.floor(Math.random()*(window_height-150))+'px';
+			main.appendChild(div);
+			
+			return div;
+			
+		}
+
+		//创建不同位置的星星
+		function createStar(){
+			var div = document.createElement("div");
+			div.className='show_star';
+			div.style.left = Math.floor(Math.random()*(window_width-150))+'px';
+			div.style.top = Math.floor(Math.random()*(window_height-150))+'px';
+			main.appendChild(div);
+			return div;
+		}
+
+
+		//游戏开始页面用户的登录
+		sub.onclick = function(){
+			sub_result.style.display = 'none';
+			main.style.display = 'block';
+			sum_star = 0;
+
+			show_xingxing.innerHTML = sum_star+'分';
+
+		}
+		
+
+		//控制音乐的开关
+		audio.setAttribute("on",1);
+		set2.onclick = function(){
+		
+				
+			if(audio.getAttribute('on')==1){
+				audio.play();
+				audio.setAttribute("on",0);
+			}else{
+				audio.pause();
+				audio.setAttribute("on",1);
+			}
+
+				
+		}
+
+
+		//控制游戏的暂停与开始
+		set1.setAttribute("on",1);
+		set1.onclick = function(){
+			if(set1.getAttribute("on")==1){
+				clearInterval(time1);
+				console.log("暂停")
+				set1.setAttribute("on",0);
+			}else{
+				time1 = setInterval(function(){
+					move();
+				},1000);
+
+				console.log('开始');
+			}
+		}
+
+	
+		
+
+
+
+
+
+	
+		
+
+	</script>
+</body>
+</html>
